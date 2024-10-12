@@ -21,17 +21,30 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from mido device
 $(call inherit-product, device/xiaomi/mido/device.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Include our private certificate
+-include vendor/atiga-priv/keys/keys.mk
+
+# Inherit some common AfterlifeOS stuff.
+$(call inherit-product, vendor/afterlife/config/common_full_phone.mk)
+AFTERLIFE_MAINTAINER := bmwtheseries
+TARGET_FACE_UNLOCK_SUPPORTED := true
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := mido
-PRODUCT_NAME := lineage_mido
+PRODUCT_NAME := afterlife_mido
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi Note 4
 PRODUCT_MANUFACTURER := Xiaomi
 TARGET_VENDOR := Xiaomi
 BOARD_VENDOR := Xiaomi
+
+# Bootanimation
+TARGET_BOOTANIMATION_NAME := 720
+TARGET_BOOT_ANIMATION_RES := 720
+TARGET_BOOTANIMATION_HALF_RES := true
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
